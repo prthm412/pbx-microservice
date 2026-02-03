@@ -3,7 +3,7 @@
 A high-performance, production-ready microservice for handling PBX call streaming with real-time AI transcription and sentiment analysis. Built with FastAPI, PostgreSQL, and WebSockets for enterprise-scale telephony systems.
 
 [![Tests](https://img.shields.io/badge/tests-9%20passed-brightgreen)]()
-[![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
+[![Python](https://img.shields.io/badge/python-3.12%2B-blue)]()
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688)]()
 
 ## Table of Contents
@@ -43,7 +43,7 @@ A high-performance, production-ready microservice for handling PBX call streamin
 
 ### Backend
 - **FastAPI 0.109** - Modern async web framework
-- **Python 3.11+** - Latest async/await features
+- **Python 3.12** - Latest async/await features
 - **Uvicorn** - Lightning-fast ASGI server
 - **Pydantic 2.5** - Data validation and serialization
 
@@ -206,7 +206,7 @@ Attempt 4: SUCCESS ✓
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/yourusername/pbx-microservice.git
+git clone https://github.com/prthm412/pbx-microservice.git
 cd pbx-microservice
 ```
 
