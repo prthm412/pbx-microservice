@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select as sql_select
 from sqlalchemy.orm import selectinload
 
+from app.api.routes.websocket import manager as websocket_manager
 from app.db.database import AsyncSessionLocal
 from app.db.models import Call, CallStatus
 from app.services.ai_service import ai_service, AIServiceError
@@ -136,6 +137,7 @@ class CallProcessor:
             await db.refresh(call)
             
             # Step 6: Transition back to COMPLETED
+            # Step 6: Transition back to COMPLETED
             logger.info(f"Step 6: Transitioning back to COMPLETED")
             call = await CallService.update_call_status(
                 db, call, CallStatus.COMPLETED
@@ -145,6 +147,13 @@ class CallProcessor:
             logger.info(
                 f"✅ Successfully processed call {call.call_id} "
                 f"(sentiment: {call.sentiment})"
+            )
+            
+            # Broadcast AI result via WebSocket
+            await websocket_manager.broadcast_ai_result(
+                call_id=call.call_id,
+                transcription=call.transcription,
+                sentiment=call.sentiment
             )
             
         except AIServiceError as e:
@@ -165,7 +174,14 @@ class CallProcessor:
                 error_message=f"AI service failed after retries: {str(e)}"
             )
             logger.error(f"❌ Failed to process call {call.call_id} after retries")
-        
+            
+            # Broadcast failure via WebSocket
+            await websocket_manager.broadcast_call_update(
+                call_id=call.call_id,
+                status="FAILED",
+                data={"error": str(e)}
+            )
+            
         except Exception as e:
             # Unexpected error
             logger.error(f"Unexpected error for {call.call_id}: {str(e)}", exc_info=True)

@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db.database import init_db
-from app.api.routes import calls
+from app.api.routes import calls, websocket
 from app.config import settings
 from app.services.call_processor import call_processor
 from app.utils.logger import setup_logger
@@ -63,6 +63,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(calls.router)
+app.include_router(websocket.router)
 
 
 @app.get("/")
