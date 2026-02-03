@@ -6,8 +6,6 @@ A high-performance, production-ready microservice for handling PBX call streamin
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)]()
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688)]()
 
----
-
 ## Table of Contents
 
 - [Features](#features)
@@ -20,8 +18,6 @@ A high-performance, production-ready microservice for handling PBX call streamin
 - [Testing](#testing)
 - [Performance](#performance)
 - [Project Structure](#project-structure)
-
----
 
 ## Features
 
@@ -42,7 +38,6 @@ A high-performance, production-ready microservice for handling PBX call streamin
 - Full test coverage (integration + race conditions)
 - Docker-based development environment
 
----
 
 ## Tech Stack
 
@@ -65,7 +60,6 @@ A high-performance, production-ready microservice for handling PBX call streamin
 - **Pytest** - Comprehensive testing framework
 - **HTTPX** - Async HTTP client for testing
 
----
 
 ## Architecture
 
@@ -102,7 +96,6 @@ A high-performance, production-ready microservice for handling PBX call streamin
 7. **WebSocket Broadcast**: Real-time updates to all connected clients
 8. **State Updates**: Call transitions through state machine
 
----
 
 ## Methodology
 
@@ -134,9 +127,8 @@ This microservice was designed following these principles:
 - Async operations enable high concurrency
 - Background processor can be scaled horizontally
 
----
 
-## 🔧 Technical Details
+## Technical Details
 
 ### State Machine Implementation
 
@@ -202,7 +194,6 @@ Attempt 4: SUCCESS ✓
 - **AI Processing**: 1-3 seconds (simulated)
 - **WebSocket Broadcast**: < 10ms
 
----
 
 ## Setup Instructions
 
@@ -263,9 +254,8 @@ Open your browser to:
 - **Swagger UI**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
 
----
 
-## 📡 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -358,7 +348,6 @@ Response: 200 OK
 }
 ```
 
----
 
 ## Testing
 
@@ -399,9 +388,8 @@ pytest tests/ -v -s
 docker exec -it pbx_postgres psql -U postgres -c "CREATE DATABASE pbx_test;"
 ```
 
----
 
-## ⚡ Performance
+## Performance
 
 ### Benchmarks
 
@@ -420,9 +408,8 @@ docker exec -it pbx_postgres psql -U postgres -c "CREATE DATABASE pbx_test;"
 - **Background Processing**: Polls every 5 seconds, can be scaled
 - **WebSocket Connections**: Unlimited (memory-bound)
 
----
 
-## 📁 Project Structure
+## Project Structure
 ```
 pbx-microservice/
 ├── app/
@@ -470,7 +457,6 @@ pbx-microservice/
 └── README.md                   # This file
 ```
 
----
 
 ## Key Design Decisions
 
@@ -494,28 +480,23 @@ pbx-microservice/
 - **Development**: No external API dependencies
 - **Demonstration**: Shows retry logic in action
 
----
 
 
-## 📝 License
+## License
 This project is created for technical assessment purposes.
 
----
 
-## 👤 Author
+## Author
 
 **Prathmesh Mathur**
 - GitHub: [@prthm412](https://github.com/prthm412)
 - LinkedIn: [Prathmesh Mathur](https://www.linkedin.com/in/prthmmthr/)
 
----
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - FastAPI documentation and community
 - SQLAlchemy async patterns
 - Tenacity retry library
-
----
 
 **Built using Python, FastAPI, and PostgreSQL**
