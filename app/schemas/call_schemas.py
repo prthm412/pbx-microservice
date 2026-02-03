@@ -55,16 +55,32 @@ class CallResponse(BaseModel):
         use_enum_values = True
 
 
+class CallDetailResponse(BaseModel):
+    """Detailed call response with packets"""
+    id: int
+    call_id: str
+    status: CallStatus
+    created_at: datetime
+    updated_at: datetime
+    completed_at: Optional[datetime] = None
+    total_packets: int
+    missing_packets: str
+    transcription: Optional[str] = None
+    sentiment: Optional[str] = None
+    ai_processed_at: Optional[datetime] = None
+    error_message: Optional[str] = None
+    packets_count: int
+    ai_processing_attempts: int
+    
+    class Config:
+        from_attributes = True
+        use_enum_values = True
+
+
 class CallListResponse(BaseModel):
     """Response for list of calls"""
     calls: List[CallResponse]
     total: int
-
-
-class CallDetailResponse(CallResponse):
-    """Detailed call response with packets"""
-    packets_count: int
-    ai_processing_attempts: int
 
 
 class WebSocketMessage(BaseModel):

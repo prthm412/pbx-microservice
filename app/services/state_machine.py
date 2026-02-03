@@ -65,7 +65,7 @@ class CallStateMachine:
     def transition(cls, from_status: CallStatus, to_status: CallStatus) -> CallStatus:
         """
         Perform state transition with validation
-        
+
         Args:
             from_status: Current status
             to_status: Desired status
@@ -76,6 +76,10 @@ class CallStateMachine:
         Raises:
             StateTransitionError: If transition is invalid
         """
+        # Allow staying in the same state (idempotent)
+        if from_status == to_status:
+            return to_status
+
         if not cls.can_transition(from_status, to_status):
             raise StateTransitionError(
                 f"Invalid state transition: {from_status.value} → {to_status.value}"
